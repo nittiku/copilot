@@ -2,10 +2,25 @@
 
 <head>
     <title>Copilot</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 
 <body>
-    <h1>Hello!</h1>
+    <button id="open-cp-btn" onclick="showCopilot()">Copilot</button>
+    <div id="copilot-container">
+
+        <button id="cp-close-btn" onclick="hideCopilot()">x</button>
+
+        <div id="cp-question-text">
+            <h3>Question Text</h3>
+        </div>
+        <div id="cp-template">
+            <div id="cp-fields"></div>
+            <div id="cp-buttons"></div>
+        </div>
+
+    </div>
 </body>
+<script src="./script.js"></script>
 
 </html>

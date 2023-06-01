@@ -1,0 +1,146 @@
+[
+  {
+    "TemplateType": 1,
+    "Items": [
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 2,
+    "Items": [
+      {
+        "id": 1,
+        "label": "Yes",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 2,
+        "label": "No",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 3,
+    "Items": [
+      {
+        "id": 1,
+        "label": "Approved",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 2,
+        "label": "Declined",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 3,
+        "label": "Pending",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 4,
+        "label": "Not found",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 4,
+    "Items": [
+      {
+        "id": 1,
+        "label": "SGM",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 2,
+        "label": "Non SGM",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 3,
+        "label": "Pending",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 4,
+        "label": "Not found",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 5,
+    "Items": [
+      {
+        "id": "1_NGACCOUNTNUMBER",
+        "label": "ACCOUNT NUMBER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "2_RXNUMBER",
+        "label": "RX NUMBER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "3_THERAPY",
+        "label": "THERAPY",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "4_DRUGNAME",
+        "label": "DRUG NAME",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 6,
+    "Items": [
+      {
+        "id": "1_NGPRIMARYPAYER",
+        "label": "PRIMARY PAYER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "2_NGSECONDARYPAYER",
+        "label": "SECONDARY PAYER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  }
+]
