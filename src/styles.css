@@ -46,3 +46,15 @@
   text-align: center;
   color: #f5efe7;
 }
+
+#cp-refresh-btn {
+  display: none;
+  position: absolute;
+  top: 3px;
+  left: 40px;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  color: #f5efe7;
+  background-color: #213555;
+}

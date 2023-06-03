@@ -366,17 +366,6 @@ const mapping = [
 
 const templates = [
   {
-    TemplateType: 0,
-    Items: [
-      {
-        id: 0,
-        label: "Close",
-        ControlType: "button",
-        ParentElement: "cp-buttons",
-      },
-    ],
-  },
-  {
     TemplateType: 1,
     Items: [
       {
@@ -526,7 +515,6 @@ document.getElementById("open-cp-btn").addEventListener("click", showCopilot);
 
 function showCopilot() {
   const popup = document.getElementById("copilot-container");
-
   popup.style.cssText = "display: grid; justify-self: center;";
 }
 
@@ -538,7 +526,7 @@ function hideCopilot() {
 // Declaring global variables for state management
 let currentID = 1;
 let buttonID = 1;
-let userSteps = [];
+let userSteps = [1];
 let userQuestions = [];
 let userStepCounter = 0;
 
@@ -546,17 +534,64 @@ let userStepCounter = 0;
 getQuestion(1);
 renderTemplate(1);
 
+// Function to handle back button
+function handleBackBtn() {
+  if (userSteps.length === 0 || userSteps.length === 1) {
+    getQuestion(1);
+    renderTemplate(1);
+    const backButton = document.getElementById("cp-back-btn");
+    backButton.style.display = "none";
+    const refreshButton = document.getElementById("cp-refresh-btn");
+    refreshButton.style.display = "none";
+    return;
+  } else {
+    userSteps.pop();
+    currentID = userSteps.pop();
+    console.log(userSteps);
+    console.log(currentID);
+    getQuestion(currentID);
+    return;
+  }
+}
+
+// Function to handle refresh button
+function handleRefreshBtn() {
+  currentID = 1;
+  buttonID = 1;
+  userSteps = [1];
+  userQuestions = [];
+  userStepCounter = 0;
+  console.log("Refreshing..");
+  const backButton = document.getElementById("cp-back-btn");
+  backButton.style.display = "none";
+  const refreshButton = document.getElementById("cp-refresh-btn");
+  refreshButton.style.display = "none";
+  getQuestion(1);
+  renderTemplate(1);
+}
+
 // Function to display the question
 function getQuestion(id) {
   const question = questions.find((questions) => questions.ID === id);
   if (id !== 0) {
     buttonID = question.TemplateType;
     renderQuestion(question.Question);
+    renderTemplate(buttonID);
     userQuestions.push(question.Question);
     return question.Question;
   } else {
-    renderTemplate(0);
     console.log("No more questions");
+    const questionContainer = document.getElementById("cp-question-text");
+    const buttonContainer = document.getElementById("cp-buttons");
+    const tip = document.createElement("p");
+
+    buttonContainer.innerHTML = "";
+    questionContainer.innerText = "You've reached to end..";
+    tip.innerText = "You can go back, reset or close the copilot.";
+    tip.style.fontSize = "16px";
+
+    questionContainer.append(tip);
+    return;
   }
 }
 
@@ -587,23 +622,21 @@ function renderQuestion(questionText) {
 }
 
 function handleClick(id) {
-  if (id === 0) {
-    const copilotContainer = document.getElementById("copilot-container");
-    copilotContainer.style.display = "none";
-  }
   getNextQuestion(id);
-  renderTemplate(buttonID);
-  console.log(userSteps);
-  console.log(userStepCounter);
+  console.log("user steps: ", userSteps);
+  console.log("user step counter: ", userStepCounter);
+  console.log("Current ID: ", currentID);
   // console.log(userQuestions);
 }
 
 // Function to render the template
 function renderTemplate(desiredTemplateId) {
-  // Show the back button
-  if (currentID === 2) {
+  // Show the back and refresh buttons
+  if (currentID >= 2) {
     const backButton = document.getElementById("cp-back-btn");
     backButton.style.display = "block";
+    const refreshButton = document.getElementById("cp-refresh-btn");
+    refreshButton.style.display = "block";
   }
 
   const template = templates.find(
@@ -686,7 +719,3 @@ function renderTemplate(desiredTemplateId) {
   fieldsContainer.style.cssText =
     "display: flex; flex-direction: column; gap: 4px; text-align: center; justify-content: center;";
 }
-
-// Test something here
-// getNextID(1);
-// Test something here

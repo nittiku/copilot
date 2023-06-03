@@ -8,13 +8,17 @@
 <body>
     <button id="open-cp-btn">Copilot</button>
     <div id="copilot-container">
-        <button id="cp-back-btn">&#x25c0;</button>
-        <button id="cp-close-btn" onclick="hideCopilot()">&#10006;</button>
+        <div id="cp-nav-btn">
+            <button id="cp-back-btn" onclick="handleBackBtn()">&#x25c0;</button>
+            <button id="cp-refresh-btn" onclick="handleRefreshBtn()">&#x27F2;</button>
+            <button id="cp-close-btn" onclick="hideCopilot()">&#10006;</button>
+
+        </div>
 
         <div>
-            <h3 id="cp-question-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, amet distinctio
+            <p id="cp-question-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, amet distinctio
                 fugit labore totam esse voluptates id quaerat! Reiciendis molestias fugiat distinctio facere est ad
-                officia animi eos amet beatae?</h3>
+                officia animi eos amet beatae?</p>
         </div>
         <div id="cp-template">
 
