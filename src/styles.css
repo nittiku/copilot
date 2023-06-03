@@ -4,28 +4,45 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
+  min-height: 200px;
+  width: 400px;
   padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   background-color: #fff;
   border: 1px solid #ccc;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   z-index: 9999;
+  background-color: #213555;
+  border-radius: 10px;
 }
 
 #cp-close-btn {
   position: absolute;
   top: 10px;
   right: 10px;
+  font-size: 16px;
   cursor: pointer;
+  border: none;
+  color: #f5efe7;
+  background-color: #213555;
 }
 
-.cp-buttons {
-  width: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+#cp-back-btn {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  color: #f5efe7;
+  background-color: #213555;
 }
 
-#cp-template {
-  width: 100px;
-  height: auto;
+#cp-question-text {
+  padding-top: 10px;
+  font-size: 20px;
+  text-align: center;
+  color: #f5efe7;
 }

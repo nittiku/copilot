@@ -366,6 +366,17 @@ const mapping = [
 
 const templates = [
   {
+    TemplateType: 0,
+    Items: [
+      {
+        id: 0,
+        label: "Close",
+        ControlType: "button",
+        ParentElement: "cp-buttons",
+      },
+    ],
+  },
+  {
     TemplateType: 1,
     Items: [
       {
@@ -511,56 +522,90 @@ const templates = [
   },
 ];
 
-// Declaring global variables for state management
-let currentID = 1;
-let steps = [];
+document.getElementById("open-cp-btn").addEventListener("click", showCopilot);
 
 function showCopilot() {
-  var popup = document.getElementById("copilot-container");
-  popup.style.display = "block";
+  const popup = document.getElementById("copilot-container");
+
+  popup.style.cssText = "display: grid; justify-self: center;";
 }
 
 function hideCopilot() {
-  var popup = document.getElementById("copilot-container");
+  const popup = document.getElementById("copilot-container");
   popup.style.display = "none";
 }
 
+// Declaring global variables for state management
+let currentID = 1;
+let buttonID = 1;
+let userSteps = [];
+let userQuestions = [];
+let userStepCounter = 0;
+
 // Display the first question and first template
-getQuestion(currentID);
+getQuestion(1);
 renderTemplate(1);
 
 // Function to display the question
-function getQuestion(ID) {
-  for (let i = 0; i < questions.length; i++) {
-    if (questions[i].ID === ID) {
-      let buttonID = questions[i].TemplateType;
-      renderTemplate(buttonID);
-      console.log(questions[i].Question);
-    }
+function getQuestion(id) {
+  const question = questions.find((questions) => questions.ID === id);
+  if (id !== 0) {
+    buttonID = question.TemplateType;
+    renderQuestion(question.Question);
+    userQuestions.push(question.Question);
+    return question.Question;
+  } else {
+    renderTemplate(0);
+    console.log("No more questions");
   }
 }
 
 // Function to get the next question ID
-function getNextID(ID) {
+function getNextQuestion(userButtonID) {
   for (let i = 0; i < mapping.length; i++) {
     if (mapping[i].QuestionID === currentID) {
-      if (mapping[i].ActionDepth === ID) {
+      if (mapping[i].ActionDepth === userButtonID) {
         currentID = mapping[i].NextQuestionID;
+        userSteps.push(currentID);
+        userStepCounter++;
+        console.log(getQuestion(mapping[i].NextQuestionID));
+        return;
       } else if (mapping[i].ActionDepth === 0) {
         currentID = mapping[i].NextQuestionID;
+        userSteps.push(currentID);
+        userStepCounter++;
+        console.log(getQuestion(mapping[i].NextQuestionID));
+        return;
       }
     }
   }
 }
 
-function handleButtonClick(ID) {
-  getNextID(ID);
-  console.log(currentID);
-  getQuestion(currentID);
+function renderQuestion(questionText) {
+  const questionContainer = document.getElementById("cp-question-text");
+  questionContainer.innerText = questionText;
+}
+
+function handleClick(id) {
+  if (id === 0) {
+    const copilotContainer = document.getElementById("copilot-container");
+    copilotContainer.style.display = "none";
+  }
+  getNextQuestion(id);
+  renderTemplate(buttonID);
+  console.log(userSteps);
+  console.log(userStepCounter);
+  // console.log(userQuestions);
 }
 
 // Function to render the template
 function renderTemplate(desiredTemplateId) {
+  // Show the back button
+  if (currentID === 2) {
+    const backButton = document.getElementById("cp-back-btn");
+    backButton.style.display = "block";
+  }
+
   const template = templates.find(
     (template) => template.TemplateType === desiredTemplateId
   );
@@ -572,6 +617,7 @@ function renderTemplate(desiredTemplateId) {
 
   const buttonsContainer = document.getElementById("cp-buttons");
   const fieldsContainer = document.getElementById("cp-fields");
+  const templateContainer = document.getElementById("cp-template");
 
   // Clear previous content
   buttonsContainer.innerHTML = "";
@@ -583,10 +629,34 @@ function renderTemplate(desiredTemplateId) {
       button.classList.add("cp-buttons");
       button.id = item.id;
       button.innerText = item.label;
-      button.addEventListener("click", function (event) {
-        var buttonId = event.target.id;
-        handleButtonClick(buttonId);
+      button.addEventListener("click", function () {
+        handleClick(item.id);
       });
+
+      // Adding button specific styling
+      if (item.label === "Ok") {
+        buttonsContainer.style.display = "flex";
+        buttonsContainer.style.flexDirection = "row";
+        buttonsContainer.style.justifyContent = "space-between";
+        button.style.width = "40px";
+      } else if (item.label === "Yes" || item.label === "No") {
+        buttonsContainer.style.display = "flex";
+        buttonsContainer.style.flexDirection = "row";
+        buttonsContainer.style.justifyContent = "space-between";
+        button.style.width = "40px";
+      } else {
+        buttonsContainer.style.display = "flex";
+        buttonsContainer.style.flexDirection = "column";
+        buttonsContainer.style.justifyContent = "center";
+        buttonsContainer.style.gap = "10px";
+      }
+      // Common styling for all the buttons
+      button.style.backgroundColor = "#4f709c";
+      button.style.borderRadius = "4px";
+      button.style.border = "none";
+      button.style.height = "25px";
+      button.style.color = "#f5efe7";
+      // Appending the buttons to the HTML
       buttonsContainer.appendChild(button);
     } else if (item.ControlType === "field") {
       const field = document.createElement("input");
@@ -594,10 +664,27 @@ function renderTemplate(desiredTemplateId) {
       field.id = item.id;
       field.type = "text";
       field.placeholder = item.label;
-      //field.addEventListener("input", handleFieldInput);
+
+      // Adding styling to the rendered input fields
+      field.style.backgroundColor = "#F5EFE7";
+      field.style.border = "none";
+      field.style.padding = "5px";
+      field.style.borderRadius = "5px";
+      field.style.margin = "5px";
+      field.style.boxShadow = "0 0 15px 4px rgba(0,0,0,0.06)";
+
       fieldsContainer.appendChild(field);
     }
   });
+
+  templateContainer.style.cssText =
+    "display: flex; flex-direction: column; justify-content: center;";
+
+  // buttonsContainer.style.cssText =
+  //   "display: inline-grid; grid-gap: 4px; text-align: center;";
+
+  fieldsContainer.style.cssText =
+    "display: flex; flex-direction: column; gap: 4px; text-align: center; justify-content: center;";
 }
 
 // Test something here

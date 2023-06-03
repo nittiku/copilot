@@ -6,17 +6,22 @@
 </head>
 
 <body>
-    <button id="open-cp-btn" onclick="showCopilot()">Copilot</button>
+    <button id="open-cp-btn">Copilot</button>
     <div id="copilot-container">
+        <button id="cp-back-btn">&#x25c0;</button>
+        <button id="cp-close-btn" onclick="hideCopilot()">&#10006;</button>
 
-        <button id="cp-close-btn" onclick="hideCopilot()">x</button>
-
-        <div id="cp-question-text">
-            <h3>Question Text</h3>
+        <div>
+            <h3 id="cp-question-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. At, amet distinctio
+                fugit labore totam esse voluptates id quaerat! Reiciendis molestias fugiat distinctio facere est ad
+                officia animi eos amet beatae?</h3>
         </div>
         <div id="cp-template">
+
             <div id="cp-fields"></div>
-            <div id="cp-buttons"></div>
+            <div id="cp-buttons">
+            </div>
+
         </div>
 
     </div>
