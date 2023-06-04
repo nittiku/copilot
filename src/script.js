@@ -516,11 +516,15 @@ document.getElementById("open-cp-btn").addEventListener("click", showCopilot);
 function showCopilot() {
   const popup = document.getElementById("copilot-container");
   popup.style.cssText = "display: grid; justify-self: center;";
+  const overlay = document.getElementById("cp-overlay");
+  overlay.style.display = "block";
 }
 
 function hideCopilot() {
   const popup = document.getElementById("copilot-container");
   popup.style.display = "none";
+  const overlay = document.getElementById("cp-overlay");
+  overlay.style.display = "none";
 }
 
 // Declaring global variables for state management
@@ -662,6 +666,16 @@ function renderTemplate(desiredTemplateId) {
       button.classList.add("cp-buttons");
       button.id = item.id;
       button.innerText = item.label;
+      button.addEventListener("mouseover", function () {
+        button.style.backgroundColor = "#5c86bd";
+        button.style.color = "#F5EFE7";
+        button.style.boxShadow = "4px 4px 8px rgba(0, 0, 0, 0.5)";
+      });
+      button.addEventListener("mouseout", function () {
+        button.style.backgroundColor = "#4f709c";
+        button.style.color = "#d8c4b6";
+        button.style.boxShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
+      });
       button.addEventListener("click", function () {
         handleClick(item.id);
       });
@@ -688,7 +702,8 @@ function renderTemplate(desiredTemplateId) {
       button.style.borderRadius = "4px";
       button.style.border = "none";
       button.style.height = "25px";
-      button.style.color = "#f5efe7";
+      button.style.color = "#d8c4b6";
+      button.style.boxShadow = "2px 2px 4px rgba(0, 0, 0, 0.5)";
       // Appending the buttons to the HTML
       buttonsContainer.appendChild(button);
     } else if (item.ControlType === "field") {
