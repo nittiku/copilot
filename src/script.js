@@ -540,7 +540,7 @@ renderTemplate(1);
 
 // Function to handle back button
 function handleBackBtn() {
-  if (userSteps.length === 0 || userSteps.length === 1) {
+  if (userSteps.length <= 2) {
     getQuestion(1);
     renderTemplate(1);
     const backButton = document.getElementById("cp-back-btn");
@@ -550,7 +550,7 @@ function handleBackBtn() {
     return;
   } else {
     userSteps.pop();
-    currentID = userSteps.pop();
+    currentID = userSteps[userSteps.length - 1];
     console.log(userSteps);
     console.log(currentID);
     getQuestion(currentID);
