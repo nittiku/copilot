@@ -1,0 +1,550 @@
+const questions = [
+  {
+    "ID": 1,
+    "Question": "Collect the following data from the dispense page and populate",
+    "Description": "Input form",
+    "TemplateType": 3
+  },
+  {
+    "ID": 2,
+    "Question": "Collect and populate the following data from the Patient Profile > Insurance Tab.",
+    "Description": "Input form",
+    "TemplateType": 4
+  },
+  {
+    "ID": 3,
+    "Question": "Review the Action history and Notes for important information",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 4,
+    "Question": "Review the patient clinical tab. Is there R69?",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 5,
+    "Question": "Is there r69 on the account?",
+    "Description": "Yes/No action",
+    "TemplateType": 2
+  },
+  {
+    "ID": 6,
+    "Question": "Remove R69:\nClick on Edit. Re-rank R69 out of Seq #1, then click on the trash button. Rank the correct ICD-10 code to Seq #1. Then click on Save.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 7,
+    "Question": "Open the payer file based on the insurance found on the dispense maintenance screen that is being processed by clicking on the BIL Group hyperlink. If there are multiple clients under the bill group, verify that chosen file is the correct payer.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 8,
+    "Question": "Process the claim for the current date of service to replicate the pre-dispense check pop up box only",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 9,
+    "Question": "Make note of the boxes that DO NOT have check boxes (require further research)",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 10,
+    "Question": "Select cancel to exit this screen and proceed with verification.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 11,
+    "Question": "Utilize Websites/Applications such as Availity, Change Healthcare, and obc to plan to Verify if the patient is active and eligible under the Primary and Secondary medical insurance plan",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 12,
+    "Question": "Is the MAJ insurance active",
+    "Description": "Yes/No action",
+    "TemplateType": 2
+  },
+  {
+    "ID": 13,
+    "Question": "populate this information :",
+    "Description": "Input form",
+    "TemplateType": 5
+  },
+  {
+    "ID": 14,
+    "Question": "Is PA check box unchecked or is there a DNF 39 ACCOUNT?",
+    "Description": "Yes/No action",
+    "TemplateType": 2
+  },
+  {
+    "ID": 15,
+    "Question": "Review payer files and determine whether a PA is Required. Review Delegation list if available.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 16,
+    "Question": "Is a PA required?",
+    "Description": "Yes/No action",
+    "TemplateType": 2
+  },
+  {
+    "ID": 17,
+    "Question": "Review Availity, CAS (for Florida Blue only), or OBC to Plan\n**See info box 1 For Availity PA search instructions",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 18,
+    "Question": "Is a PA on file",
+    "Description": "Yes/No action",
+    "TemplateType": 2
+  },
+  {
+    "ID": 19,
+    "Question": "Verify with plan if PA on File is still active:\nMDO listed (If new RX received for the same drug)\nNumber of fills remaining\nNPI listed on PA matches dispensing pharmacy\nEffective and expiration dates.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 20,
+    "Question": "Populate the following info:",
+    "Description": "Input form",
+    "TemplateType": 6
+  },
+  {
+    "ID": 21,
+    "Question": "Process Claim",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 22,
+    "Question": "Did you receive a rejection or pre-fill edit failure box?",
+    "Description": "Yes/No action",
+    "TemplateType": 2
+  },
+  {
+    "ID": 23,
+    "Question": "Select Rejection Type:",
+    "Description": "Multi action",
+    "TemplateType": 7
+  },
+  {
+    "ID": 24,
+    "Question": "Action/Outcome: Reviewed/Resolved",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 25,
+    "Question": "Check \"No PA Required\" in the Pre-Dispense check for MAJ box",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 26,
+    "Question": "Contact PT and/or MDO to notify of delay via preferred contact method to request new ins info.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 27,
+    "Question": "Proceed to PA process per payer files preferred method.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 28,
+    "Question": "Florida Blue MAJ PA Process:\n-SGM.\nSend Florida Blue Coversheet CRU form to specific FL Blue CRU email 18664411568@fax.cvshealth.com. Cover letter and CRU form can be found in payer files. Do not reach out to FL blue for PA status. Review payer files for the correct follow-up process.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 29,
+    "Question": "Review for a Specific form or phone and fax number to provide the MDO for the PA Request.",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 30,
+    "Question": "If the following apply, Initiate PA using CMM. Send to Prescriber (Not to Plan).\n-Not SGM\n- A specific form is not required\n- Payer files do not state \"Do Not Use CMM\"",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 31,
+    "Question": "Contact the patient and inform them of the delay due to PA",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 32,
+    "Question": "If a Prior Authorization is needed, do not action/outcome as \"Reviewed/PA Required\"",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 33,
+    "Question": "Action/Outcome: Reviewed/Pend Follow Up",
+    "Description": "Single action",
+    "TemplateType": 1
+  },
+  {
+    "ID": 34,
+    "Question": "Action/Outcome: Reviewed Insurance Change needed",
+    "Description": "Single action",
+    "TemplateType": 1
+  }
+]
+
+const mapping = [
+  {
+    "QuestionID": 1,
+    "NextQuestionID": 2,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 2,
+    "NextQuestionID": 3,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 3,
+    "NextQuestionID": 4,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 4,
+    "NextQuestionID": 5,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 5,
+    "NextQuestionID": 6,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 5,
+    "NextQuestionID": 7,
+    "ActionDepth": 2
+  },
+  {
+    "QuestionID": 6,
+    "NextQuestionID": 7,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 7,
+    "NextQuestionID": 8,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 8,
+    "NextQuestionID": 9,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 9,
+    "NextQuestionID": 10,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 10,
+    "NextQuestionID": 11,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 11,
+    "NextQuestionID": 12,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 12,
+    "NextQuestionID": 13,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 12,
+    "NextQuestionID": 26,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 13,
+    "NextQuestionID": 14,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 14,
+    "NextQuestionID": 15,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 14,
+    "NextQuestionID": 21,
+    "ActionDepth": 2
+  },
+  {
+    "QuestionID": 15,
+    "NextQuestionID": 16,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 16,
+    "NextQuestionID": 17,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 16,
+    "NextQuestionID": 25,
+    "ActionDepth": 2
+  },
+  {
+    "QuestionID": 17,
+    "NextQuestionID": 18,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 18,
+    "NextQuestionID": 19,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 18,
+    "NextQuestionID": 34,
+    "ActionDepth": 2
+  },
+  {
+    "QuestionID": 19,
+    "NextQuestionID": 20,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 20,
+    "NextQuestionID": 21,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 21,
+    "NextQuestionID": 22,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 22,
+    "NextQuestionID": 23,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 22,
+    "NextQuestionID": 24,
+    "ActionDepth": 2
+  },
+  {
+    "QuestionID": 23,
+    "NextQuestionID": 38,
+    "ActionDepth": 1
+  },
+  {
+    "QuestionID": 23,
+    "NextQuestionID": 39,
+    "ActionDepth": 2
+  },
+  {
+    "QuestionID": 23,
+    "NextQuestionID": 40,
+    "ActionDepth": 3
+  },
+  {
+    "QuestionID": 23,
+    "NextQuestionID": 41,
+    "ActionDepth": 4
+  },
+  {
+    "QuestionID": 23,
+    "NextQuestionID": 42,
+    "ActionDepth": 5
+  }
+]
+
+const templates = [
+  {
+    "TemplateType": 1,
+    "Items": [
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 2,
+    "Items": [
+      {
+        "id": 1,
+        "label": "Yes",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 2,
+        "label": "No",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 3,
+    "Items": [
+      {
+        "id": "BillNote_Account_Number",
+        "label": "ACCOUNT NUMBER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "BillNote_RX_Number",
+        "label": "RX NUMBER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "BillNote_Therapy",
+        "label": "THERAPY",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "BillNote_Drug_Name",
+        "label": "DRUG NAME",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "BillNote_Drug_Strength",
+        "label": "DRUG STRENGTH",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 4,
+    "Items": [
+      {
+        "id": "BillNote_Primary_Payer",
+        "label": "PRIMARY PAYER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "BillNote_Secondary_Payer",
+        "label": "SECONDARY PAYER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 5,
+    "Items": [
+      {
+        "id": "Pt_Is_Active_Per",
+        "label": "PT IS ACTIVE PER",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "Transaction_ID",
+        "label": "TRANSACTION ID",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 6,
+    "Items": [
+      {
+        "id": "Pa_Number_On_File",
+        "label": "PA NUMBER ON FILE",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": "Span_Dates",
+        "label": "SPAN DATES",
+        "ControlType": "field",
+        "ParentElement": "cp_fields"
+      },
+      {
+        "id": 1,
+        "label": "Ok",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  },
+  {
+    "TemplateType": 6,
+    "Items": [
+      {
+        "id": 1,
+        "label": "CONTACT MCR TL (BGDC)",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 2,
+        "label": "Next Suggested Fill Date",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 3,
+        "label": "DNF (90,96, ETC)",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 4,
+        "label": "PROVIDER NOT ELIGIBLE",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      },
+      {
+        "id": 5,
+        "label": "Send to Ins Res WL",
+        "ControlType": "button",
+        "ParentElement": "cp_buttons"
+      }
+    ]
+  }
+]
