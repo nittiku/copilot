@@ -547,6 +547,13 @@ function handleBackBtn() {
     backButton.style.display = "none";
     const refreshButton = document.getElementById("cp-refresh-btn");
     refreshButton.style.display = "none";
+
+    currentID = 1;
+    buttonID = 1;
+    userSteps = [1];
+    userQuestions = [];
+    userStepCounter = 0;
+
     return;
   } else {
     userSteps.pop();
